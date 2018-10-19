@@ -1,0 +1,75 @@
+﻿
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <base href="<%=basePath%>">
+
+    <title>My JSP 'first.jsp' starting page</title>
+
+    <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+//        $.post("http://localhost:8080/springdemo3/upLoadFile.do",function(data){
+//            if (data.status=="success"){
+//                alert(data.word);
+//                alert("123");
+
+//            },"json"
+//            a = JSON.parseObject(data, String.class);
+//            alert(""+data);
+
+    </script>
+</head>
+<body>
+<input type="button" value="ajax" id="btn"/>
+<div id="result"></div>
+</body>
+
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+
+<body>
+<form id='uf' action='./upLoadFile.do' method="post" enctype="multipart/form-data">
+    Choose File:<input type="file" name="file"/>
+    <input type="submit" value="提交"/>
+    <input type="button" value="上传" onclick="upload()"/>
+    <script type="text/javascript">
+    $("#uf").on("submit", function(event){
+        var form = this;
+        var fd = new FormData(form);
+    $.ajax({
+    url: this.action,
+    type: 'post',
+    data:fd,
+    dataType:'json',
+    async:true,
+    processData:false,
+    contentType:false,
+    success: function(data){
+    $("#result").html(data.word)
+    alert(data.status)
+
+    }
+
+    });
+    return false;
+    }
+    );
+
+    
+    </script>
+       
+    <script !src=""></script>
+
+</body>
+</html>
+</br> </br>  <form action="./downLoadFile.do"style="border:1px solid grey;width:auto;" method="post">
+    文件名：<input type="text" name="name"/></br></br>
+    文件路径：<input type="text" name="filePath"/></br></br>
+    <input type="submit" value="确认下载"/>
+</form>
+
+
